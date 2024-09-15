@@ -5,6 +5,7 @@ export const storageDemo = useWebExtensionStorage('webext-demo', 'Storage Demo')
 export const settingTableData = useWebExtensionStorage<SyncConfigItem[]>('setting-table-data', [{
   from: '.example.com',
   to: 'localhost',
+  url: 'http://localhost',
   include: [],
   exclude: [],
   editing: false,

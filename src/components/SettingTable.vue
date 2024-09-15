@@ -26,6 +26,7 @@ function handleEditClick(row: SyncConfigItem) {
     }
   })
 }
+
 function handleSaveClick(index: number) {
   settingTableData.value[index] = tempEditingRow.value!
   settingTableData.value[index].editing = false
@@ -53,6 +54,12 @@ function handleAddConfig() {
         <template #default="{ row }">
           <span v-if="!row.editing">{{ row.to }}</span>
           <el-input v-else v-model="tempEditingRow.to" />
+        </template>
+      </el-table-column>
+      <el-table-column label="Url">
+        <template #default="{ row }">
+          <span v-if="!row.editing">{{ row.url }}</span>
+          <el-input v-else v-model="tempEditingRow.url" />
         </template>
       </el-table-column>
       <el-table-column label="Include">
