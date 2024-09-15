@@ -12,7 +12,8 @@
     },
     "resolveJsonModule": true,
     "types": [
-      "vite/client"
+      "vite/client",
+      "element-plus/global"
     ],
     "strict": true,
     "noUnusedLocals": true,
