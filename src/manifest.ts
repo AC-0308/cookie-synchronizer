@@ -5,7 +5,7 @@ import { isDev, isFirefox, port, r } from '../scripts/utils'
 
 export async function getManifest() {
   const pkg = await fs.readJSON(r('package.json')) as typeof PkgType
-
+  // https://www.svgrepo.com/svg/30963/cookie
   // update this file to update this manifest.json
   // can also be conditional based on your need
   const manifest: Manifest.WebExtensionManifest = {
