@@ -26,6 +26,9 @@ function handleEditClick(row: SyncConfigItem) {
     }
   })
 }
+function handleToggleDisable(row: SyncConfigItem) {
+  row.disabled = !row.disabled
+}
 
 function handleSaveClick(index: number) {
   settingTableData.value[index] = tempEditingRow.value!
@@ -46,25 +49,33 @@ function handleAddConfig() {
       <el-table-column type="index" width="50" />
       <el-table-column label="From">
         <template #default="{ row }">
-          <span v-if="!row.editing">{{ row.from }}</span>
+          <el-text v-if="!row.editing" :type="row.disabled ? 'info' : undefined">
+            {{ row.from }}
+          </el-text>
           <el-input v-else v-model="tempEditingRow.from" />
         </template>
       </el-table-column>
       <el-table-column label="To">
         <template #default="{ row }">
-          <span v-if="!row.editing">{{ row.to }}</span>
+          <el-text v-if="!row.editing" :type="row.disabled ? 'info' : undefined">
+            {{ row.to }}
+          </el-text>
           <el-input v-else v-model="tempEditingRow.to" />
         </template>
       </el-table-column>
       <el-table-column label="Url">
         <template #default="{ row }">
-          <span v-if="!row.editing">{{ row.url }}</span>
+          <el-text v-if="!row.editing" :type="row.disabled ? 'info' : undefined">
+            {{ row.url }}
+          </el-text>
           <el-input v-else v-model="tempEditingRow.url" />
         </template>
       </el-table-column>
       <el-table-column label="Include">
         <template #default="{ row }">
-          <span v-if="!row.editing">{{ row.include?.join(',') || 'All' }}</span>
+          <el-text v-if="!row.editing" :type="row.disabled ? 'info' : undefined">
+            {{ row.include?.join(',') || 'All' }}
+          </el-text>
           <el-select
             v-else v-model="tempEditingRow.include" multiple filterable allow-create default-first-option
             :reserve-keyword="false" placeholder="Choose key for your cookies to sync"
@@ -75,7 +86,9 @@ function handleAddConfig() {
       </el-table-column>
       <el-table-column label="Exclude">
         <template #default="{ row }">
-          <span v-if="!row.editing">{{ row.exclude?.join(',') || 'None' }}</span>
+          <el-text v-if="!row.editing" :type="row.disabled ? 'info' : undefined">
+            {{ row.exclude?.join(',') || 'None' }}
+          </el-text>
           <el-select
             v-else v-model="tempEditingRow.exclude" multiple filterable allow-create default-first-option
             :reserve-keyword="false" placeholder="Choose key for exclude cookies"
@@ -84,13 +97,18 @@ function handleAddConfig() {
           </el-select>
         </template>
       </el-table-column>
-      <el-table-column fixed="right" label="Operations" width="140">
+      <el-table-column fixed="right" label="Operations" width="190">
         <template #default="{ row, $index }">
-          <el-button v-if="!row.editing" link type="primary" size="small" @click="handleEditClick(row)">
-            Update
-          </el-button>
-          <el-button v-else link type="primary" size="small" @click="handleSaveClick($index)">
-            Save
+          <template v-if="!row.disabled">
+            <el-button v-if="!row.editing" link type="primary" size="small" @click="handleEditClick(row)">
+              Update
+            </el-button>
+            <el-button v-else link type="primary" size="small" @click="handleSaveClick($index)">
+              Save
+            </el-button>
+          </template>
+          <el-button link :type="row.disabled ? 'primary' : 'warning'" size="small" @click="handleToggleDisable(row)">
+            {{ row.disabled ? 'Enable' : 'Disable' }}
           </el-button>
           <el-button v-if="!row.editing" link type="danger" size="small" @click="deleteConfig(row)">
             Delete

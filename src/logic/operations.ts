@@ -7,7 +7,9 @@ export function createNewConfig(): SyncConfigItem {
   return {
     from: '',
     to: '',
+    url: '',
     editing: false,
+    disabled: false,
     include: [],
     exclude: [],
   }

@@ -35,7 +35,10 @@ onMessage('get-domain-cookie-keys', async ({ data }) => {
 browser.cookies.onChanged.addListener(({ cookie, removed }) => {
   const { domain, name, value } = cookie
   settingTableData.value.forEach((config) => {
-    const { from, to, url, include, exclude } = config
+    const { from, to, url, include, exclude, disabled } = config
+    if (disabled) {
+      return
+    }
     const includeMatch = (!include.length || include.some(reg => new RegExp(reg).test(name)))
     const excludeMatch = exclude.some(reg => new RegExp(reg).test(name))
     if (

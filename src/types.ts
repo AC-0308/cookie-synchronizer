@@ -6,4 +6,5 @@ export interface SyncConfigItem {
   exclude: string[]
   availableKeys?: string[]
   editing: boolean
+  disabled: boolean
 }
