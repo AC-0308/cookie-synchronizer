@@ -1,7 +1,7 @@
 {
   "name": "cookie-synchronizer",
-  "displayName": "Cookie同步器",
-  "version": "0.0.1",
+  "displayName": "Cookie Synchronizer",
+  "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@9.7.1",
   "description": "Synchronize your cookies between sites!",
