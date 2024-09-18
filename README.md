@@ -45,7 +45,7 @@ To build the extension, run
 pnpm build
 ```
 
-And then pack files under `extension`, you can upload `extension.crx` or `extension.xpi` to appropriate extension store.
+And then pack files under `extension`, you can switch on the developer mode and add unzipped extension into you browser.
 
 ## Credits
 
